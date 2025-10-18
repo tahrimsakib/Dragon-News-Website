@@ -17,5 +17,7 @@
 
 * {
     font-family: "Playwrite US Modern", cursive;
-
+}
+a.active {
+    @apply bg-base-300 text-black
 }
