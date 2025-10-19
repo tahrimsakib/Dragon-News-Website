@@ -1,7 +1,21 @@
-import React from "react";
+import React, { use } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Register = () => {
+  const { createUser, setUser } = use(AuthContext);
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const photo = e.target.photo.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log({ name, photo, email, password });
+    createUser(email, password);
+    setUser
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-8">
@@ -13,7 +27,7 @@ const Register = () => {
         {/* Divider */}
         <div className="border-b border-gray-300 mb-8"></div>
 
-        <form>
+        <form onSubmit={handleRegister}>
           {/* Name Field */}
           <div className="mb-6">
             <label className="block text-gray-700 font-semibold mb-3">
@@ -32,7 +46,7 @@ const Register = () => {
               Photo URL
             </label>
             <input
-              type="file"
+              type="text"
               placeholder="pic url"
               name="photo"
               className="w-full px-4 py-3 bg-gray-100 rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
@@ -65,7 +79,10 @@ const Register = () => {
           </div>
 
           {/* Login Button */}
-          <button className="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 rounded-md transition-colors duration-300 mb-6">
+          <button
+            type="submit"
+            className="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 rounded-md transition-colors duration-300 mb-6"
+          >
             Login
           </button>
         </form>
