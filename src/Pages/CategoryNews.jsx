@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router";
+import NewsCard from "../component/NewsCard";
 
 const CategoryNews = () => {
   const { id } = useParams();
@@ -22,7 +23,16 @@ const CategoryNews = () => {
     }
   }, [data, id]);
 
-  return <div>categories news {news.length}</div>;
+  return (
+    <div>
+      categories news {news.length}
+      <div className="grid grid-cols-1 gap-3 mt-5">
+        {news.map((news) => (
+          <NewsCard key={news.id} news={news}></NewsCard>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default CategoryNews;
